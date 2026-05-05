@@ -1,5 +1,6 @@
 package tarakanova.tests;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tarakanova.base.BaseTest;
@@ -8,6 +9,7 @@ import tarakanova.page.ProductPage;
 import tarakanova.utils.User;
 
 public class LoginTest extends BaseTest {
+
 
 
     @Test
