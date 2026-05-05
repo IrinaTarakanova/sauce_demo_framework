@@ -48,4 +48,10 @@ public class ProductPage {
         WebElement product = getProductByName(productName);
         product.findElement(removeFromCartButton).click();
     }
+    public CartPage goToCartPage() {
+        driver.findElement(goToCartButton).click();
+        return new CartPage(driver);
+    }
+
+
 }
