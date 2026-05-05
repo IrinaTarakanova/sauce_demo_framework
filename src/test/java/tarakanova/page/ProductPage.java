@@ -33,8 +33,15 @@ public class ProductPage {
     }
 
     //checking how many items added in cart
+    // using List to not create NoSuchElementException
     public int getCartBadgeCount() {
-        return Integer.parseInt(driver.findElement(cartBadgeNumber).getText());
+        List<WebElement> badges = driver.findElements(cartBadgeNumber);
+
+        if (badges.isEmpty()) {
+            return 0;
+        }
+
+        return Integer.parseInt(badges.get(0).getText());
     }
 
     //adding items in cart

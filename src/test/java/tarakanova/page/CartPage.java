@@ -18,9 +18,6 @@ public class CartPage {
     @FindBy(css = ".cart_item")
     private List<WebElement> cartItems;
 
-    @FindBy(xpath = "//button[text()='Remove']")
-    private WebElement removeButton;
-
     @FindBy(id ="checkout")
     private WebElement checkoutButton;
 

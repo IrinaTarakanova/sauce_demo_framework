@@ -33,7 +33,7 @@ public class CheckoutPage {
 
     private By itemsName = By.cssSelector(".inventory_item_name");
 
-    public void fillTheForm(String firstName, String lastName, String postalCode) {
+    public void fillCheckoutInformation(String firstName, String lastName, String postalCode) {
         this.firstName.sendKeys(firstName);
         this.lastName.sendKeys(lastName);
         this.postalCode.sendKeys(postalCode);
