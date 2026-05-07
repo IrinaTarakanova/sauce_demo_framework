@@ -1,0 +1,6 @@
+<configuration>
+    <logger name="io.github.bonigarcia.wdm" level="OFF"/>
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

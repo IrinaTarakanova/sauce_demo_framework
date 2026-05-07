@@ -15,6 +15,7 @@ public class ScreenshotUtil {
 
        //avoid overwriting files
         String timestamp = String.valueOf(System.currentTimeMillis());
+        testName = testName.replaceAll("[^a-zA-Z0-9]", "_");
 
         //creating directory for screenshots
         new File(System.getProperty("user.dir") + "/screenshots").mkdirs();

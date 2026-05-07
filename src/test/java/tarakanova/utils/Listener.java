@@ -1,61 +1,67 @@
 package tarakanova.utils;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import tarakanova.base.BaseTest;
 
+import java.util.Arrays;
+
 import static tarakanova.utils.ScreenshotUtil.takeScreenshot;
 
 public class Listener  implements ITestListener  {
+
+    private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("========================================");
-        System.out.println("Test Started: " + result.getMethod().getMethodName());
-        System.out.println("========================================");
+        test.set(ExtentReportManager.getReport()
+                .createTest(result.getName()));
+        test.get().info("Test started");
+        test.get().info("Parameters: " + Arrays.toString(result.getParameters()));
+        test.remove();
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.println("✓ Test Passed: " + result.getMethod().getMethodName());
-        System.out.println("Execution time: " + (result.getEndMillis() - result.getStartMillis()) + "ms");
+        test.get().pass("Test passed");
+        test.remove();
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("✗ Test Failed: " + result.getMethod().getMethodName());
-        System.out.println("Exception: " + result.getThrowable().getMessage());
-        
+        test.get().fail(result.getThrowable());
+
         BaseTest baseTest = (BaseTest) result.getInstance();
         WebDriver driver = baseTest.getDriver();
         String testName = result.getMethod().getMethodName();
         
         try {
             String screenshotPath = takeScreenshot(driver, testName);
+            test.get().addScreenCaptureFromPath(screenshotPath);
             System.out.println("Screenshot saved at: " + screenshotPath);
         } catch (Exception e) {
             System.out.println("Failed to take screenshot: " + e.getMessage());
             e.printStackTrace();
         }
+        test.remove();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        System.out.println("⊘ Test Skipped: " + result.getMethod().getMethodName());
+        test.get().skip("Test skipped");
+
         if (result.getThrowable() != null) {
-            System.out.println("Reason: " + result.getThrowable().getMessage());
+            test.get().skip(result.getThrowable());
+            test.remove();
         }
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        System.out.println("========================================");
-        System.out.println("Test Suite Finished");
-        System.out.println("Total tests: " + context.getAllTestMethods().length);
-        System.out.println("Passed: " + context.getPassedTests().size());
-        System.out.println("Failed: " + context.getFailedTests().size());
-        System.out.println("Skipped: " + context.getSkippedTests().size());
-        System.out.println("========================================");
+        ExtentReportManager.getReport().flush();
+        test.remove();
     }
 }
