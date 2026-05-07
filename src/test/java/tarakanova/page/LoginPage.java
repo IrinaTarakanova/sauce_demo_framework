@@ -21,17 +21,6 @@ public class LoginPage {
         return driver.findElement(loginLogo).getText();
     }
 
-    public void enterUsername(String username) {
-        driver.findElement(usernameField).sendKeys(username);
-    }
-
-    public void enterPassword(String password) {
-        driver.findElement(passwordField).sendKeys(password);
-    }
-    public void clickLoginButton() {
-        driver.findElement(loginButton).click();
-    }
-
     public ProductPage login(String username, String password) {
         driver.findElement(usernameField).sendKeys(username);
         driver.findElement(passwordField).sendKeys(password);
@@ -42,4 +31,9 @@ public class LoginPage {
     public String getErrorMessage() {
         return driver.findElement(errorMessage).getText();
     }
+
+    public boolean isErrorMessageDisplayed() {
+        return driver.findElement(errorMessage).isDisplayed();
+    }
 }
+

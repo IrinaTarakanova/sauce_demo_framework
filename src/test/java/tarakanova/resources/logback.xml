@@ -1,5 +1,18 @@
 <configuration>
-    <logger name="io.github.bonigarcia.wdm" level="OFF"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Disable WebDriverManager logs -->
+    <logger name="io.github.bonigarcia.wdm" level="OFF" additivity="false"/>
+
+    <!-- Disable TestNG logs -->
+    <logger name="org.testng" level="OFF" additivity="false"/>
+    <logger name="org.testng.internal" level="OFF" additivity="false"/>
+
+    <!-- Root logger configuration -->
     <root level="ERROR">
         <appender-ref ref="STDOUT"/>
     </root>

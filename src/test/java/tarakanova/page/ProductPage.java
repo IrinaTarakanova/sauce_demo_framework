@@ -60,5 +60,9 @@ public class ProductPage {
         return new CartPage(driver);
     }
 
+    public boolean isOnProductsPage() {
+        return driver.getCurrentUrl().contains("inventory");
+    }
+
 
 }
