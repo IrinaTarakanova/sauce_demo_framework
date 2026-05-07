@@ -19,7 +19,7 @@ public class CartPageTest extends HelperBaseTest {
         }
         Assert.assertEquals(cartPage.getCartItemsCount(), 3);
         cartPage.clickCheckoutButton();
-        Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-one"));
+        Assert.assertTrue(getDriver().getCurrentUrl().contains("checkout-step-one"));
     }
 
 

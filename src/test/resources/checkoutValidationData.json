@@ -1,0 +1,26 @@
+[
+  {
+    "firstName": "",
+    "lastName": "Mane",
+    "postalCode": "12345",
+    "expectedErrorMessage": "Error: First Name is required"
+  },
+  {
+    "firstName": "Anna",
+    "lastName": "",
+    "postalCode": "12345",
+    "expectedErrorMessage": "Error: Last Name is required"
+  },
+  {
+    "firstName": "Anna",
+    "lastName": "Mane",
+    "postalCode": "",
+    "expectedErrorMessage": "Error: Postal Code is required"
+  },
+  {
+    "firstName": "",
+    "lastName": "",
+    "postalCode": "",
+    "expectedErrorMessage": "Error: First Name is required"
+  }
+]

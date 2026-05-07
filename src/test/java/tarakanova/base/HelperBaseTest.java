@@ -13,9 +13,9 @@ public class HelperBaseTest extends BaseTest {
             "Sauce Labs Bolt T-Shirt");
 
     protected ProductPage loginAndMoveToProductPage(){
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login(User.STANDARD.getUsername(), User.STANDARD.getPassword());
-        return new ProductPage(driver);
+        return new ProductPage(getDriver());
     }
 
     protected ProductPage addItemsFromProductPage(){

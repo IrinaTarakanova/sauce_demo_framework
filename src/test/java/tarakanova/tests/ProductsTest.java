@@ -17,9 +17,9 @@ public class ProductsTest extends BaseTest {
             "Sauce Labs Bolt T-Shirt");
 
     private ProductPage loginAndMoveToProductPage(){
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
       loginPage.login(User.STANDARD.getUsername(), User.STANDARD.getPassword());
-      return new ProductPage(driver);
+      return new ProductPage(getDriver());
     }
 
     private ProductPage addItemsFromProductPage(){
@@ -35,7 +35,7 @@ public class ProductsTest extends BaseTest {
         ProductPage productPage = addItemsFromProductPage();
         Assert.assertEquals(productPage.getCartBadgeCount(), 3);
         productPage.goToCartPage();
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/cart.html");
+        Assert.assertEquals(getDriver().getCurrentUrl(), "https://www.saucedemo.com/cart.html");
     }
 
     @Test

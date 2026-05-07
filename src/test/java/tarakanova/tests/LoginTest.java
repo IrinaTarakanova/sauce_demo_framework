@@ -14,14 +14,14 @@ public class LoginTest extends BaseTest {
 
     @BeforeMethod
     public void setUpPage() {
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(getDriver());
     }
 
     @Test(groups = "positive")
     public void  validUserShouldLoginSuccessfully() {
         Assert.assertEquals(loginPage.getLoginLogo(), "Swag Labs");
       loginPage.login(User.STANDARD.getUsername(), User.STANDARD.getPassword());
-      ProductPage productPage = new ProductPage(driver);
+      ProductPage productPage = new ProductPage(getDriver());
 
         Assert.assertTrue(productPage.isOnProductsPage());
     }
