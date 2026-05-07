@@ -21,7 +21,7 @@ public class Listener  implements ITestListener  {
                 .createTest(result.getName()));
         test.get().info("Test started");
         test.get().info("Parameters: " + Arrays.toString(result.getParameters()));
-        test.remove();
+
     }
 
     @Override
@@ -62,6 +62,6 @@ public class Listener  implements ITestListener  {
     @Override
     public void onFinish(ITestContext context) {
         ExtentReportManager.getReport().flush();
-        test.remove();
+       
     }
 }
