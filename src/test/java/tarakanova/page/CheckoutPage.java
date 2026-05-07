@@ -29,6 +29,8 @@ public class CheckoutPage {
     private List<WebElement> inventoryItemsPrice;
     @FindBy(css=".summary_subtotal_label")
     private WebElement itemTotalPrice;
+    @FindBy(css="h3[data-test='error']")
+    private WebElement errorMessage;
 
 
     private By itemsName = By.cssSelector(".inventory_item_name");
@@ -58,6 +60,13 @@ public class CheckoutPage {
         // keep only numbers and dot
         String value = text.replaceAll("[^0-9.]", "");
         return Double.parseDouble(value);
+    }
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage.isDisplayed();
+    }
+
+    public String getErrorMessage() {
+        return errorMessage.getText();
     }
 
 }

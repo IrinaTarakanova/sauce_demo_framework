@@ -10,22 +10,23 @@ import tarakanova.page.ProductPage;
 
 public class CheckoutPageTest extends HelperBaseTest {
 
+    private CheckoutPage goToCheckoutPage() {
+        ProductPage productPage = addItemsFromProductPage();
+        CartPage cartPage = productPage.goToCartPage();
+        return cartPage.clickCheckoutButton();
+    }
 
-
-       @Test
+       @Test(groups = "positive")
         public void shouldFillTheFormAndClickCheckoutButton() {
-            ProductPage productPage = addItemsFromProductPage();
-            CartPage cartPage = productPage.goToCartPage();
-            CheckoutPage checkoutPage = cartPage.clickCheckoutButton();
+
+            CheckoutPage checkoutPage = goToCheckoutPage();
             checkoutPage.fillCheckoutInformation("Anna", "Mane", "12345");
             Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-two"));
         }
 
-        @Test
+        @Test(groups = "positive")
         public void totalItemsCheckoutAndPriceClickFinish() {
-            ProductPage productPage = addItemsFromProductPage();
-            CartPage cartPage = productPage.goToCartPage();
-            CheckoutPage checkoutPage = cartPage.clickCheckoutButton();
+            CheckoutPage checkoutPage = goToCheckoutPage();
             checkoutPage.fillCheckoutInformation("Anna", "Mane", "12345");
             Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-two"));
             for (String item : items) {
@@ -36,7 +37,40 @@ public class CheckoutPageTest extends HelperBaseTest {
             double actual = checkoutPage.getItemTotalPriceFromPage();
 
             Assert.assertEquals(actual, calculated, 0.01);
+       }
 
-        }
+       @Test(groups = "negative")
+    public void emptyFirstNameShouldShowError() {
+           CheckoutPage checkoutPage = goToCheckoutPage();
+            checkoutPage.fillCheckoutInformation("", "Mane", "12345");
+
+            Assert.assertEquals(checkoutPage.getErrorMessage()
+                    , "Error: First Name is required");
+    }
+    @Test(groups = "negative")
+    public void emptyLastNameShouldShowError() {
+        CheckoutPage checkoutPage = goToCheckoutPage();
+        checkoutPage.fillCheckoutInformation("Anna", "", "12345");
+
+        Assert.assertEquals(checkoutPage.getErrorMessage()
+                , "Error: Last Name is required");
+    }
+
+    @Test(groups = "negative")
+    public void emptyPostalCodeShouldShowError() {
+        CheckoutPage checkoutPage = goToCheckoutPage();
+        checkoutPage.fillCheckoutInformation("Anna", "Mane", "");
+
+        Assert.assertEquals(checkoutPage.getErrorMessage()
+                , "Error: Postal Code is required");
+    }
+    @Test(groups = "negative")
+    public void allFieldsEmptyShouldShowFirstNameError() {
+        CheckoutPage checkoutPage = goToCheckoutPage();
+        checkoutPage.fillCheckoutInformation("", "", "");
+
+        Assert.assertEquals(checkoutPage.getErrorMessage()
+                , "Error: First Name is required");
+    }
 
 }
