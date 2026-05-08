@@ -3,14 +3,17 @@ package tarakanova.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import tarakanova.utils.WaitUtils;
 
 import java.util.List;
 
 public class ProductPage {
 
     private WebDriver driver;
+    private WaitUtils wait;
     public ProductPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WaitUtils(driver);
     }
 
     private By addToCartButton = By.cssSelector(".btn_inventory");
@@ -23,7 +26,7 @@ public class ProductPage {
 
     //adding items in cart by items name
     private WebElement getProductByName(String productName) {
-        List<WebElement> products = driver.findElements(listOfProducts);
+        List<WebElement> products = wait.waitForAllVisible(listOfProducts);
 
         return products.stream()
                 .filter(p -> p.findElement(itemName)

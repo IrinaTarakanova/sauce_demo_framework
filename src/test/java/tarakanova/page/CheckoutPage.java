@@ -5,22 +5,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tarakanova.utils.WaitUtils;
 
 import java.util.List;
 
 public class CheckoutPage {
     private WebDriver driver;
+    private WaitUtils wait;
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WaitUtils(driver);
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(id="first-name")
-    private WebElement firstName;
+    private WebElement firstNameField;
     @FindBy(id="last-name")
-    private WebElement lastName;
+    private WebElement lastNameField;
     @FindBy(id="postal-code")
-    private WebElement postalCode;
+    private WebElement postalCodeField;
     @FindBy(id="continue")
     private WebElement continueButton;
     @FindBy(css=".cart_item_label")
@@ -36,10 +39,10 @@ public class CheckoutPage {
     private By itemsName = By.cssSelector(".inventory_item_name");
 
     public void fillCheckoutInformation(String firstName, String lastName, String postalCode) {
-        this.firstName.sendKeys(firstName);
-        this.lastName.sendKeys(lastName);
-        this.postalCode.sendKeys(postalCode);
-        this.continueButton.click();
+        wait.waitForVisible(firstNameField).sendKeys(firstName);
+        lastNameField.sendKeys(lastName);
+        postalCodeField.sendKeys(postalCode);
+        wait.waitForClickable(continueButton).click();
     }
     public boolean isProductInCart(String productName) {
         return cartItems.stream().anyMatch(item -> item.findElement(itemsName)

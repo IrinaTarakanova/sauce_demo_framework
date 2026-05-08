@@ -30,7 +30,7 @@ public class ProductsTest extends BaseTest {
         return productPage;
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void addItemsToCart() {
         ProductPage productPage = addItemsFromProductPage();
         Assert.assertEquals(productPage.getCartBadgeCount(), 3);

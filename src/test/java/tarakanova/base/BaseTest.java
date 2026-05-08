@@ -18,7 +18,7 @@ public class BaseTest {
         return driver.get();
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
 
         WebDriverManager.chromedriver().setup();
@@ -45,7 +45,7 @@ public class BaseTest {
     }
 
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         getDriver().quit();
         driver.remove();

@@ -20,7 +20,7 @@ public class CheckoutPageTest extends HelperBaseTest {
         return cartPage.clickCheckoutButton();
     }
 
-    @Test(groups = "positive")
+    @Test(groups = "smoke")
     public void shouldFillTheFormAndClickCheckoutButton() {
 
         CheckoutPage checkoutPage = goToCheckoutPage();
@@ -28,7 +28,7 @@ public class CheckoutPageTest extends HelperBaseTest {
         Assert.assertTrue(getDriver().getCurrentUrl().contains("checkout-step-two"));
     }
 
-    @Test(groups = "positive")
+    @Test(groups = "smoke")
     public void totalItemsCheckoutAndPriceClickFinish() {
         CheckoutPage checkoutPage = goToCheckoutPage();
         checkoutPage.fillCheckoutInformation("Anna", "Mane", "12345");

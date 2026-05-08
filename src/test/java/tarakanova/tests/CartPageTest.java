@@ -8,7 +8,7 @@ import tarakanova.page.ProductPage;
 
 public class CartPageTest extends HelperBaseTest {
 
-    @Test
+    @Test(groups = "smoke")
     public void productsShouldBeVisibleInCart() {
         ProductPage productPage = addItemsFromProductPage();
 

@@ -12,12 +12,12 @@ public class LoginTest extends BaseTest {
 
     private LoginPage loginPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUpPage() {
         loginPage = new LoginPage(getDriver());
     }
 
-    @Test(groups = "positive")
+    @Test(groups = "smoke")
     public void  validUserShouldLoginSuccessfully() {
         Assert.assertEquals(loginPage.getLoginLogo(), "Swag Labs");
       loginPage.login(User.STANDARD.getUsername(), User.STANDARD.getPassword());
