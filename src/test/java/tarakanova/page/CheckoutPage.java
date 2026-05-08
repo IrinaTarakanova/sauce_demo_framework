@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import tarakanova.utils.WaitUtils;
 
 import java.util.List;
@@ -34,6 +35,10 @@ public class CheckoutPage {
     private WebElement itemTotalPrice;
     @FindBy(css="h3[data-test='error']")
     private WebElement errorMessage;
+    @FindBy(id="finish")
+    private WebElement finishButton;
+    @FindBy(xpath="//h2[@class='complete-header']")
+    private WebElement completeHeader;
 
 
     private By itemsName = By.cssSelector(".inventory_item_name");
@@ -64,12 +69,16 @@ public class CheckoutPage {
         String value = text.replaceAll("[^0-9.]", "");
         return Double.parseDouble(value);
     }
-    public boolean isErrorMessageDisplayed() {
-        return errorMessage.isDisplayed();
-    }
 
     public String getErrorMessage() {
         return errorMessage.getText();
+    }
+
+    public void clickFinishButton() {
+        finishButton.click();
+    }
+    public String getConfirmationMessage() {
+        return wait.waitForVisible(completeHeader).getText();
     }
 
 }

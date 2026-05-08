@@ -41,6 +41,10 @@ public class CheckoutPageTest extends HelperBaseTest {
         double actual = checkoutPage.getItemTotalPriceFromPage();
 
         Assert.assertEquals(actual, calculated, 0.01);
+            checkoutPage.clickFinishButton();
+        Assert.assertEquals(checkoutPage.getConfirmationMessage(), "Thank you for your order!");
+
+
     }
 
     @Test(dataProvider = "checkoutValidationData", groups = "negative")
