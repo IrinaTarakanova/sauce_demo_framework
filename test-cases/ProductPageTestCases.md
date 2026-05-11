@@ -13,6 +13,10 @@ Steps:
 Expected Result:
 - Product is added in cart.
 - Cart icon shows the number of products added in cart.
+  Perform by:
+- Irina
+  Execution time:
+- 1 minute 10 seconds
 
 Test Case 2: Verify that the user can remove products from the cart
 Preconditions:
@@ -23,3 +27,7 @@ Steps:
 Expected Result:
 - Product is removed from the cart.
 - Cart icon shows the number of products added in cart after removing the product.
+  Perform by:
+- Irina
+  Execution time:
+- 1 minute 10 seconds

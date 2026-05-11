@@ -10,6 +10,10 @@ Preconditions:
 - Click on the "Login" button.
 Expected Result:
 - The user is successfully logged in and redirected to product page
+Perform by:
+- Irina
+Execution time:
+- 1 minute
 
 Test Case 2: Locked user login
 Preconditions:
@@ -23,7 +27,11 @@ Steps:
 Expected Result:
 - An error message is displayed: "Epic sadface: Sorry, this user has been locked out."
 - The user remains on the login page.
-
+  Perform by:
+- Irina
+  Execution time:
+- 1 minute
+- 
 Test Case 3: Empty fields login
 Preconditions:
 - The login page is accessible.
@@ -34,4 +42,7 @@ Steps:
 - Expected Result:
 - An error message is displayed: "Epic sadface: Username is required."
 - The user remains on the login page.
-- 
+  Perform by:
+- Irina
+  Execution time:
+- 1 minute

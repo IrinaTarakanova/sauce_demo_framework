@@ -15,6 +15,10 @@ Preconditions:
 - Expected Result:
 - The user is successfully made purchase and is navigated to the order confirmation page.
 - User get message "Thank you for your order!" on order confirmation page.
+  Perform by:
+- Irina
+  Execution time:
+- 2 minute
 
 Test Case 2: Checkout with empty first name field
 Preconditions:
@@ -30,6 +34,10 @@ Preconditions:
 - Expected Result:
 - An error message is displayed: "Error: First Name is required."
 - The user remains on the checkout page.
+-   Perform by:
+- Irina
+  Execution time:
+- 2 minute
 
 Test Case 3: Checkout with empty last name field
 Preconditions:
@@ -46,6 +54,10 @@ Preconditions:
 - Expected Result:
 - An error message is displayed: "Error: Last Name is required."
 - The user remains on the checkout page.
+  Perform by:
+- Irina
+  Execution time:
+- 2 minute
 - 
 - Test Case 4: Checkout with empty postal code field
 - Preconditions:
@@ -61,6 +73,10 @@ Preconditions:
 - Expected Result:
 - An error message is displayed: "Error: Postal Code is required."
 - The user remains on the checkout page.
+  Perform by:
+- Irina
+  Execution time:
+- 2 minute
 - 
 - Test Case 5: Checkout with all fields empty
 - Preconditions:
@@ -75,5 +91,7 @@ Preconditions:
 - Expected Result:
 - An error message is displayed: "Error: First Name is required."
 - The user remains on the checkout page.
-- 
-- 
+  Perform by:
+- Irina
+  Execution time:
+- 2 minute
