@@ -23,7 +23,7 @@ public class ProductPage {
     private WaitUtils wait;
 
     // Element locators
-    private By addToCartButton = By.cssSelector(".btn_inventory");
+    private By addToCartButton = By.cssSelector(".btn_primary");
     private By cartBadgeNumber = By.cssSelector(".shopping_cart_badge");
     private By removeFromCartButton = By.cssSelector(".btn_secondary");
     private By listOfProducts = By.cssSelector(".inventory_item");
