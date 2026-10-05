@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tarakanova.utils.WaitUtils;
-
+import org.openqa.selenium.TimeoutException;
 /**
  * LoginPage class represents the login page of the SauceDemo application.
  * Provides methods for user authentication, error message handling,
@@ -93,8 +93,13 @@ public class LoginPage {
      * @return true if error message is displayed, false otherwise
      */
     public boolean isErrorMessageDisplayed() {
-        boolean isDisplayed = driver.findElement(errorMessage).isDisplayed();
-        logger.debug("Error message displayed: {}", isDisplayed);
-        return isDisplayed;
+        try {
+            boolean isDisplayed = wait.waitForVisible(errorMessage).isDisplayed();
+            logger.debug("Error message displayed: {}", isDisplayed);
+            return isDisplayed;
+        } catch (TimeoutException e) {
+            logger.debug("Error message did not appear");
+            return false;
+        }
     }
 }
