@@ -24,7 +24,7 @@ public class ExtentReportManager {
      *
      * @return ExtentReports instance configured for the test suite
      */
-    public static ExtentReports getReport(){
+    public static synchronized ExtentReports getReport(){
         logger.debug("Requesting ExtentReports instance");
 
         if(extent == null) {
