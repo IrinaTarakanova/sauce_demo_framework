@@ -2,8 +2,8 @@ package tarakanova.base;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tarakanova.page.LoginPage;
 import tarakanova.page.ProductPage;
+import tarakanova.page.LoginPage;
 import tarakanova.utils.User;
 
 import java.util.List;

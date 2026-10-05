@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+// ...existing code... (removed unused WaitUtils import)
 
 import java.util.List;
 
@@ -81,4 +82,7 @@ public class CartPage {
         logger.info("Successfully navigated to checkout page");
         return new CheckoutPage(driver);
     }
+
+    // LoginPage was previously implemented as a static inner class here.
+    // The standalone `LoginPage` class exists in `tarakanova.page.LoginPage` and should be used instead.
 }

@@ -35,7 +35,6 @@ public class LoginTest extends BaseTest {
     /**
      * Test case: Verify that a valid user can login successfully.
      * This is a smoke test to ensure basic login functionality works.
-     *
      * Test Steps:
      * 1. Verify login logo is displayed
      * 2. Enter valid credentials (standard_user)
@@ -125,5 +124,29 @@ public class LoginTest extends BaseTest {
         logger.info("Empty fields error message verified: {}", errorMessage);
 
         logger.info("Test completed: emptyFieldsLoginShouldShowErrorMessage - PASSED");
+    }
+
+    @Test(groups = "negative")
+    public void wrongPasswordShouldShowErrorMessage() {
+        logger.info("Starting test: wrongPasswordShouldShowErrorMessage");
+        loginPage.login(User.STANDARD.getUsername(), "testing_password");
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed for login");
+        Assert.assertEquals(loginPage.getErrorMessage(),
+                "Epic sadface: Username and password do not match any user in this service",
+                "Error message should say username and password do not match");
+        Assert.assertFalse(getDriver().getCurrentUrl().contains("inventory"),
+                "User should stay on the login page");
+    }
+
+    @Test(groups = "neagtive")
+    public void wrongUsernameShouldShowErrorMessage() {
+        logger.info("Starting test: wrongUsernameShouldShowErrorMessage");
+        loginPage.login("invalid_username", User.STANDARD.getPassword());
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed for login");
+        Assert.assertEquals(loginPage.getErrorMessage(),
+                "Epic sadface: Username and password do not match any user in this service",
+                "Error message should say username and password do not match");
+        Assert.assertFalse(getDriver().getCurrentUrl().contains("inventory"),
+                "User should stay on the login page");
     }
 }
